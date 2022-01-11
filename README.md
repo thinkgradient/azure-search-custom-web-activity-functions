@@ -19,7 +19,7 @@ a.	Add the following to the Environment Variables > User Variables for …. > Pa
 7.	Set Python Interpreter to point to Anaconda Python - see below in the screenshot. Verify installation by confirming at the bottom left corner (highlighted in red) that Python interpreter is pointing to the Anaconda version.
 ![alt text](images/python379.png "Python Interpreter")
 
-###Create a new Azure Functions project
+### Create a new Azure Functions project
 ![alt text](images/newfuncproject.png "New Functions Project")
 * Browse to a folder (or create a new one) where you want all your project code to reside:
 ![alt text](images/projectfolder.png "New Project Folder")
