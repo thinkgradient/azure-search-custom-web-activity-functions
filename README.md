@@ -1,8 +1,9 @@
-## Create an Azure Functions and Debug Locally using Ngrok
-
 Tested on a Windows 10 Machine.
 
 ## [Part 1]
+
+## Create an Azure Functions and Debug Locally using Ngrok
+
 ### Install Python, VSCode and VSCode Extensions
 1.	Install **Anaconda Python** https://www.anaconda.com/products/individual
 a.	Add the following to the Environment Variables > User Variables for …. > Path variable
@@ -109,7 +110,9 @@ a.	Add the following to the Environment Variables > User Variables for …. > Pa
 
 ## [Part 2]
 
-Create Azure Search artifacts (index, indexer, data source, skillset) and point the Custom Web Activity skillset to the deployed Azure Functions.
+## Create a Custom Web Activity Skillset using a Deployed Azure Functions
+
+Create Azure Search artifacts (index, indexer, data source, skillset) and point the Custom Web Activity skillset to the deployed Azure Functions from **[Part 1]**
 
 ### Create Azure Search Service
 
