@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "3e31b7aa-43c2-49e3-b335-48a08535b1ef",
+		"name": "Search-Custom-Web-Activity-Function",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - CreateDataSource",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",  \r\n    \"name\": \"{{search-artifact-name}}-ds\",\r\n    \"type\" : \"azureblob\",\r\n    \"credentials\" : { \r\n    \t\"connectionString\": \"{{env_storage_connection_string}}\"\r\n    },  \r\n\t\"container\" : { \r\n\t\t\"name\" : \"{{env_storage_container}}\"\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/datasources?api-version={{api-version}}",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"datasources"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{api-version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - Create Index",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"{{search_artifact_name}}-index\",\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"key\": true,\r\n      \"retrievable\": true,\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"hex\",\r\n      \"type\": \"Edm.String\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"key\": false,\r\n      \"retrievable\": true,\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"type\",\r\n      \"type\": \"Edm.String\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"key\": false,\r\n      \"retrievable\": true,\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"flight\",\r\n      \"type\": \"Edm.String\",\r\n      \"facetable\": false,\r\n      \"filterable\": true,\r\n      \"key\": false,\r\n      \"retrievable\": true,\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"r\",\r\n      \"type\": \"Edm.String\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"key\": false,\r\n      \"retrievable\": true,\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"t\",\r\n      \"type\": \"Edm.String\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"key\": false,\r\n      \"retrievable\": true,\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"alt_baro\",\r\n      \"type\": \"Edm.Int32\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"retrievable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"gs\",\r\n      \"type\": \"Edm.Double\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"retrievable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"track\",\r\n      \"type\": \"Edm.Double\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"retrievable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"lat\",\r\n      \"type\": \"Edm.Double\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"retrievable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"lon\",\r\n      \"type\": \"Edm.Double\",\r\n      \"facetable\": false,\r\n      \"filterable\": false,\r\n      \"retrievable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    },\r\n    {\r\n      \"name\": \"Geo\",\r\n      \"type\": \"Edm.GeographyPoint\",\r\n      \"filterable\": true,\r\n      \"retrievable\": true,\r\n      \"sortable\": false,\r\n      \"analyzer\": null,\r\n      \"indexAnalyzer\": null,\r\n      \"searchAnalyzer\": null,\r\n      \"synonymMaps\": [],\r\n      \"fields\": []\r\n    }\r\n  ],\r\n  \"suggesters\": [],\r\n  \"scoringProfiles\": [],\r\n  \"defaultScoringProfile\": null,\r\n  \"corsOptions\": {\r\n    \"allowedOrigins\": [\r\n      \"*\"\r\n    ],\r\n    \"maxAgeInSeconds\": 60\r\n  },\r\n  \"analyzers\": [],\r\n  \"charFilters\": [],\r\n  \"tokenFilters\": [],\r\n  \"tokenizers\": []\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search_service}}.search.windows.net/indexes?api-version={{api_version}}",
+					"protocol": "https",
+					"host": [
+						"{{search_service}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{api_version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 - CreateSkillset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Conte",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"@odata.context\": \"https://{{search_service}}.search.windows.net/$metadata#skillsets/$entity\",\r\n  \"@odata.etag\": \"\\\"0x8D9BF66890E08F5\\\"\",\r\n  \"name\": \"{{search_artifact_name}}-skillset\",\r\n  \"description\": \"Skillset to extract GeoPoint type from given Latitude and Longitude values\",\r\n  \"skills\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Skills.Custom.WebApiSkill\",\r\n      \"name\": \"#1\",\r\n      \"description\": \"Extract enrichments from given job id and job target id\",\r\n      \"context\": \"/document\",\r\n      \"uri\": \"https://{{http_function_name}}.azurewebsites.net/api/GetGeoPointFromLatLon?code={{function_key}}\",\r\n      \"httpMethod\": \"POST\",\r\n      \"timeout\": \"PT30S\",\r\n      \"batchSize\": 1000,\r\n      \"degreeOfParallelism\": 1,\r\n      \"inputs\": [\r\n        {\r\n          \"name\": \"LON\",\r\n          \"source\": \"/document/lon\"\r\n        },\r\n        {\r\n          \"name\": \"LAT\",\r\n          \"source\": \"/document/lat\"\r\n        }\r\n      ],\r\n      \"outputs\": [\r\n        {\r\n          \"name\": \"data\",\r\n          \"targetName\": \"data\"\r\n        }\r\n      ],\r\n      \"httpHeaders\": {}\r\n    }\r\n  ]\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{search_service}}.search.windows.net/skillsets?api-version={{api_version}}",
+					"protocol": "https",
+					"host": [
+						"{{search_service}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"skillsets"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{api_version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05 - CreateIndexer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"@odata.context\": \"https://{{search_service}}.search.windows.net/$metadata#indexers/$entity\",\r\n  \"@odata.etag\": \"\\\"0x8D97780050E11FB\\\"\",\r\n  \"name\": \"{{search_artifact_name}}-indexer\",\r\n  \"description\": \"\",\r\n  \"dataSourceName\": \"{{search_artifact_name}}-ds\",\r\n  \"skillsetName\": \"{{search_artifact_name}}-skillset\",\r\n  \"targetIndexName\": \"{{search_artifact_name}}-index\",\r\n  \"disabled\": null,\r\n  \"schedule\": null,\r\n  \"parameters\": {\r\n    \"batchSize\": null,\r\n    \"maxFailedItems\": 0,\r\n    \"maxFailedItemsPerBatch\": 0,\r\n    \"base64EncodeKeys\": null,\r\n    \"configuration\": {\r\n      \"dataToExtract\": \"contentAndMetadata\",\r\n      \"parsingMode\": \"jsonLines\"\r\n    }\r\n  },\r\n  \"outputFieldMappings\": [\r\n    {\r\n      \"sourceFieldName\": \"/document/data\",\r\n      \"targetFieldName\": \"Geo\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search_service}}.search.windows.net/indexers?api-version={{api_version}}",
+					"protocol": "https",
+					"host": [
+						"{{search_service}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexers"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{api_version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchIndex",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"queryType\": \"simple\",\r\n    \"search\": \"*\",\r\n    \"count\": \"true\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search_service}}.search.windows.net/indexes/{{search_artifact_name}}-index/docs/search?api-version={{api_version}}",
+					"protocol": "https",
+					"host": [
+						"{{search_service}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{search_artifact_name}}-index",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{api_version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

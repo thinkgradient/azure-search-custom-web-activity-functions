@@ -1,0 +1,2 @@
+{"hex":"a2b8fe","type":"adsc","flight":"UA857   ","r":"N2749U","t":"B77W","alt_baro":33000,"gs":469.0,"track":260.64,"baro_rate":0,"lat":46.250725,"lon":-178.308449,"nic":0,"rc":0,"seen_pos":1123.1,"sil_type":"perhour","mlat":[],"tisb":[],"messages":72109840,"seen":1123.1,"rssi":-14.9},
+{"hex":"a219ea","type":"adsc","flight":"UA2800  ","r":"N2341U","t":"B77W","alt_baro":37000,"gs":467.0,"track":261.81,"baro_rate":0,"lat":46.448994,"lon":-176.692772,"nic":0,"rc":0,"seen_pos":238.2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":70796784,"seen":238.2,"rssi":-15.0},
