@@ -114,16 +114,49 @@ a.	Add the following to the Environment Variables > User Variables for …. > Pa
 
 Create Azure Search artifacts (index, indexer, data source, skillset) and point the Custom Web Activity skillset to the deployed Azure Functions from **[Part 1]**
 
-### Create Azure Search Service
+### Create Azure Search service
+ * Create an Azure Cognitive Search service in your Azure subscription https://docs.microsoft.com/en-us/azure/search/search-create-service-portal#:~:text=Sign%20in%20to%20the%20Azure,through%20Web%20%3E%20Azure%20Cognitive%20Search
 
-### Create Index
+### Create Storage Account and container
+ * You can use the storage account you created/used in **[Part 1]** or create a new one. If you're using an existing one then create a separate container and uploa the .json file from the **/data** folder in this repo. To create a new storage account follow instructions here: https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal
 
-### Create Data Source
+### Create Data Source, Index, Indexer, and Skillset
 
-### Create Indexer
+In this section you will create the four main artifacts of a Search service:
+ * Data source
+ * Index
+ * Indexer
+ * Skillset 
 
-### Create Skillset
+To do so we will use the Azure Search REST API. Download the two json files from the **/search-artifacts** folder and import them into Postman.
+
+In Postman select the environment variable file to be used by the Collection and make sure to edit the environment variable files and fill it with all the relevant values. 
+   ![alt text](images/searchcustompostman.png "Select Env Variable file")
+
+You can open each request and inspect the body of the request to analyse how we're defining the index, indexer, data source and skillset. 
+Next execute each request in the collection in this order:
+* 01 - Create Data Source
+* 03 - Create Index
+* 04 - Create Skillset
+* 05 - Create Indexer
+
+The last request will also start the indexer process.
 
 ### Debug Skillset with the Locally Running Function (ngrok)
+ * You can edit the skillset to point to your local ngrok instance instead of the Azure Functions you deployed. To edit the skillset, first delete it from Azure Search Portal and then edit the **"uri"** from:
+
+ https://{{http_function_name}}.azurewebsites.net/api/GetGeoPointFromLatLon?code={{function_key}}
+ to 
+ https://your_ngrok_id.ngrok.io/api/GetGeoPointFromLatLon
 
 ### Execute skillset with the Deployed Azure Function (Azure)
+To test it with the Deployed Azure Function change it back to:
+ https://{{http_function_name}}.azurewebsites.net/api/GetGeoPointFromLatLon?code={{function_key}}
+ Make sure you have the right values for:
+ * http_function_name
+ * function_key
+in the Environment Variable json file.
+
+### Output in Index
+* After the indexer is finished you will have two documents indexed and the result will look like below. The lat and lon values (highlighted in yellow) have been indexed into a Geo Point type structure (highlighted in green)
+   ![alt text](images/results.png "Results")
